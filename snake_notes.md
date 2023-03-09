@@ -67,3 +67,30 @@ if event.type == KEYDOWN:
     if event.key == K_ESCAPE:
         running = False
 ````
+6. Dibujar un bloque. Para dibujar un bloque en la pantalla del juego se necesita una imagen del bloque. el formato de la imagen es *jpg* y con el siguient código se carga (load) la imagen:
+````
+bloque = pygame.image.load(path).convert()
+````
+
+Quiero saber el tamaño del bloque del instructor 1.34 KB. Ya agregúe un bloque que hice en Inkscape
+
+Este bloque se verá en la pantalla del juego, y con la siguiente línea, se puede indicar la variable de la imange y la posición de la imágen en la pantalla del juego:
+````
+window_game.blit(bloque,(50,50))
+````
+otra forma de indicar la posicion de la imagen es como sige, pero no lo aplicare:
+````
+block_x = 100
+block_y = 100
+
+window_game.blit(bloque,(block_x,block_y))
+````
+Se puede crar un función para dibujar el bloque en el juego
+
+````
+def bloque():
+    window_game.fill((171, 179, 64))
+    window_game.blit(bloque,(0,0))
+    pygame.display.flip()
+````
+La idea de usar una función es para que 
