@@ -2,6 +2,8 @@
 
 [repository](https://github.com/codebasics/python_projects)
 
+[Snake -video](https://www.youtube.com/watch?v=8dfePlONtls)
+
 
 # Screen moving block
 1. import libraries
@@ -94,3 +96,7 @@ def bloque():
     pygame.display.flip()
 ````
 La idea de usar una función es para que 
+
+7. Mover el bloque sobre la pantalla del juego. como bien se, la idea del juego del snake, es poder mover la snake a traves de la pantalla para que coma. Para eso, dentro del event loop se escribe el codigo para ejecutar la acción.
+
+En el punto anterior, se vio que los valores de las coordenas de la posicion del bloque se pueden guardar en variables, estas variables son útiles para el codigo que hara que se mueva la snake.
