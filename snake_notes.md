@@ -128,6 +128,11 @@ if event.key == K_UP:   # se refiere a la tecla de la flecha hacia arriba
 En este codigo, se aplica la función *dibujar_bloque*, la cual se ejecuta despues de que el *event.key* se ejecute en base a la decisión del usuario.
 
 # Screen moving block to OOP 
+Archivo [main](/main.py)
+
+Se creó la clase **Snake**. Con el fin de dibujar el bloque y agregar las funciones que haran que se dibuje y mueva el bloque en la pantalla del juego.
+
+Se creó la clase **Game** para que ejecute las actividades del juego. Aqui se observa el inheretance porque se heredan los atributos de la clase **Snake** en esta clase. Aqui se ejecuta el event loop.
 
 ## Errores - soluciones
 
