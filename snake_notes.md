@@ -80,13 +80,15 @@ Este bloque se verá en la pantalla del juego, y con la siguiente línea, se pue
 ````
 window_game.blit(bloque,(50,50))
 ````
-otra forma de indicar la posicion de la imagen es como sige, pero no lo aplicare:
+otra forma de indicar la posición de la imagen es como sige, pero no lo aplicare. Pero si la apliqué al final porque las variables se ocupan mas adelante
 ````
 block_x = 100
 block_y = 100
 
 window_game.blit(bloque,(block_x,block_y))
 ````
+El comando *blit()* sirve para dibujar el bloque en la pantalla del juego. Es por eso que se usa en la variable window_game y recibe como parámetros, la variable de la definición del bloque y las variables de la posición que tendrá en el bloque dentro de la ventana del juego.
+
 Se puede crar un función para dibujar el bloque en el juego
 
 ````
@@ -97,6 +99,32 @@ def bloque():
 ````
 La idea de usar una función es para que 
 
+Esta línea de código ```window_game.fill((171, 179, 64))```, permite ver el movimiento del bloque de forma continua. Si se comenta la linea, esto es lo que sucede:
+
+![bloque-rastro](/img/bloque_rastro.png)
+
 7. Mover el bloque sobre la pantalla del juego. como bien se, la idea del juego del snake, es poder mover la snake a traves de la pantalla para que coma. Para eso, dentro del event loop se escribe el codigo para ejecutar la acción.
 
 En el punto anterior, se vio que los valores de las coordenas de la posicion del bloque se pueden guardar en variables, estas variables son útiles para el codigo que hara que se mueva la snake.
+
+Dentro del event loop *while*, éste codigo, permite mover el bloque con las teclas UP, DOWN, LEFT y RIGHT
+```
+if event.key == K_UP:   # se refiere a la tecla de la flecha hacia arriba
+                    bloque_y -= 10      # que se mueva 10 posiciones a la inicial
+                    dibujar_bloque()    # después del movimiento, que dibuje el bloque
+
+                if event.key == K_DOWN: # se refiere a la tecla de la flecha hacia abajo
+                    bloque_y += 10      # que se mueva 10 posiciones a la inicial
+                    dibujar_bloque()    # después del movimiento, que dibuje el bloque
+
+                if event.key == K_LEFT:
+                    bloque_x -= 10
+                    dibujar_bloque()    # después del movimiento, que dibuje el bloque
+
+                if event.key == K_RIGHT:
+                    bloque_x += 10
+                    dibujar_bloque()    # después del movimiento, que dibuje el bloque
+```
+En este codigo, se aplica la función *dibujar_bloque*, la cual se ejecuta despues de que el *event.key* se ejecute en base a la decisión del usuario.
+
+# Screen moving block to OOP 
