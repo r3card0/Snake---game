@@ -32,11 +32,11 @@ if __name__ == "__main__":
                     running = False
                 
                 if event.key == K_UP:   # se refiere a la tecla de la flecha hacia arriba
-                    bloque_y -= 10      # que se mueva 10 posiciones a la inicial
+                    bloque_y -= 10      # que se mueva 10 posiciones (pixeles) a la inicial
                     dibujar_bloque()    # después del movimiento, que dibuje el bloque
 
                 if event.key == K_DOWN: # se refiere a la tecla de la flecha hacia abajo
-                    bloque_y += 10      # que se mueva 10 posiciones a la inicial
+                    bloque_y += 10      # que se mueva 10 posiciones (pixeles) a la inicial
                     dibujar_bloque()    # después del movimiento, que dibuje el bloque
 
                 if event.key == K_LEFT:
