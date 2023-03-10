@@ -89,7 +89,7 @@ window_game.blit(bloque,(block_x,block_y))
 ````
 El comando *blit()* sirve para dibujar el bloque en la pantalla del juego. Es por eso que se usa en la variable window_game y recibe como parámetros, la variable de la definición del bloque y las variables de la posición que tendrá en el bloque dentro de la ventana del juego.
 
-Se puede crar un función para dibujar el bloque en el juego
+Se puede crear un función para dibujar el bloque en el juego
 
 ````
 def bloque():
@@ -128,3 +128,40 @@ if event.key == K_UP:   # se refiere a la tecla de la flecha hacia arriba
 En este codigo, se aplica la función *dibujar_bloque*, la cual se ejecuta despues de que el *event.key* se ejecute en base a la decisión del usuario.
 
 # Screen moving block to OOP 
+
+## Errores - soluciones
+
+Se levanto el siguiente error:
+```
+Traceback (most recent call last):
+  File "/Users/ideasleon/platzi_edu/Python/Projects/games/snake/screenMoving.py", line 72, in <module>
+    game = Game()
+           ^^^^^^
+  File "/Users/ideasleon/platzi_edu/Python/Projects/games/snake/screenMoving.py", line 38, in __init__
+    self.window_game.fill(171,179,64)
+ValueError: invalid rectstyle object
+```
+Y se arreglo, agregando un parentesis en la sintaxis
+antes
+```
+window_game.fill(171, 179, 64)
+
+ValueError: invalid rectstyle object
+```
+Después
+```
+window_game.fill((171, 179, 64))
+```
+Otro error en la linea 12
+```
+ File "/Users/ideasleon/platzi_edu/Python/Projects/games/snake/screenMoving.py", line 72, in <module>
+    game = Game()
+           ^^^^^^
+  File "/Users/ideasleon/platzi_edu/Python/Projects/games/snake/screenMoving.py", line 40, in __init__
+    self.snake.dibujar_bloque() # ?
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ideasleon/platzi_edu/Python/Projects/games/snake/screenMoving.py", line 12, in dibujar_bloque
+    self.window_game.fill((117,179.64))
+ValueError: invalid color argument
+```
+Se arreglo, cambiando el punto por la coma 😝
