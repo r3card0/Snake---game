@@ -46,15 +46,15 @@ if __name__ == "__main__":
     surface = pygame.display.set_mode(size=(500,500))
     time.sleep(5)
 ````
-3. window_game.fill() -> En este punto la ventana del juego es negra y se puede cambiar. Para cambiar el color de la ventan del juego, usamos la función *fill()*. el formato de los colores son RGB, por lo que es necesario usar las 3 combinaciones que inician desde 0 hasta 255. [color - documentacion](https://www.pygame.org/docs/ref/color.html). Al la combinacion de 255,255,255, en esta linea. ```` window_game.fill((255,255,255))````, se busca que la pantalla tenga un fondo de color blanco
+3. window_game.fill() -> En este punto la ventana del juego es negra y se puede cambiar. Para cambiar el color de la ventana del juego, usamos la función *fill()*. el formato de los colores son RGB, por lo que es necesario usar las 3 combinaciones que inician desde 0 hasta 255. [color - documentacion](https://www.pygame.org/docs/ref/color.html). Al la combinacion de 255,255,255, en esta linea. ```` window_game.fill((255,255,255))````, se busca que la pantalla tenga un fondo de color blanco
 4. pygame.display.flip() -> en el punto anterior (3), cuando se corrio el programa, no sucedio nada y esto fue porque era necesario agregar pygame.display.flip(). esta linea permite actualizar el cambio que se aplico en la punto (3) en la pantalla, en este caso color blanco. Para ver la gama de combinaciones de colores con RGB, ver los colores en base a las combianciones, buscar en google "rgb color picker" y se mostrara un menú que permitira ver opciones.
-5. Event loop. Es aplicar un loop para que mantenga abierta la ventana del juego en vez de usar el sleep statement (tiempo). Este loop, tendrá condiciones en las cuales permita al usuario, cerrar la pantalla. Primero de definira una variable asignandole el boleano True. running = True. Después, se abrira el loop *while*
+5. Event loop. Es aplicar un loop para que mantenga abierta la ventana del juego en vez de usar el sleep statement (tiempo). Este loop, tendrá condiciones en las cuales permita al usuario, cerrar la pantalla. Primero de definirá una variable asignandole el boleano True. running = True. Después, se abrira el loop *while*
 
 Un event loop espera un input del usuario. Espera una acción a través del mouse, teclado, etc. Un event loop es fundamental en cualquier aplicación de programación. 
 
 El event loop para este caso se creara con el loop *while*. El while es un infinite loop. 
 
-Pygame cuenta con *event* [event -documentacion](https://www.pygame.org/docs/ref/event.html) el cual, permite indicar que acciones se deben realizar para cerrar la ventana del juego.Las acciones se pueden indicar implementando *type*. type contiene una lista de las acciones que se pueden ejecutar. Para poder implementar event.type debidamente, es necesario importar *locals* [locals -documentacion](https://www.pygame.org/docs/ref/locals.html). Locals sirve para importar algunas variables globales que serán usadas en la ventana del juego. Un ejemplo de esto, locals, permite el acceso a la constante KEYDOWN 
+Pygame cuenta con *event* [event -documentacion](https://www.pygame.org/docs/ref/event.html) el cual, permite indicar que acciones se deben realizar para cerrar la ventana del juego.Las acciones se pueden indicar implementando *type*. type contiene una lista de las acciones que se pueden ejecutar. Para poder implementar event.type debidamente, es necesario importar *locals* [locals -documentacion](https://www.pygame.org/docs/ref/locals.html). Locals sirve para importar algunas variables globales que serán usadas en la ventana del juego. Un ejemplo de esto, locals, permite el acceso a la constante KEYDOWN , flechita para abajo.
 
 Salir de la pantalla del juego. Dentro del event loop, la linea:
 ````
@@ -103,9 +103,9 @@ Esta línea de código ```window_game.fill((171, 179, 64))```, permite ver el mo
 
 ![bloque-rastro](/img/bloque_rastro.png)
 
-7. Mover el bloque sobre la pantalla del juego. como bien se, la idea del juego del snake, es poder mover la snake a traves de la pantalla para que coma. Para eso, dentro del event loop se escribe el codigo para ejecutar la acción.
+7. Mover el bloque sobre la pantalla del juego. como bien se, la idea del juego del snake, es poder mover la snake a través de la pantalla para que coma. Para eso, dentro del event loop se escribe el codigo para ejecutar la acción.
 
-En el punto anterior, se vio que los valores de las coordenas de la posicion del bloque se pueden guardar en variables, estas variables son útiles para el codigo que hara que se mueva la snake.
+En el punto anterior (6), se vio que los valores de las coordenas de la posición del bloque se pueden guardar en variables, estas variables son útiles para el codigo que hara que se mueva la snake.
 
 Dentro del event loop *while*, éste codigo, permite mover el bloque con las teclas UP, DOWN, LEFT y RIGHT
 ```
@@ -132,7 +132,7 @@ Archivo [main](/main.py)
 
 Se creó la clase **Snake**. Con el fin de dibujar el bloque y agregar las funciones que haran que se dibuje y mueva el bloque en la pantalla del juego.
 
-Se creó la clase **Game** para que ejecute las actividades del juego. Aqui se observa el inheretance porque se heredan los atributos de la clase **Snake** en esta clase. Aqui se ejecuta el event loop.
+Se creó la clase **Game** para que ejecute las actividades del juego. Aqui se observa el *inheretance* porque se heredan los atributos de la clase **Snake** en esta clase. Aqui se ejecuta el event loop.
 
 ## Errores - soluciones
 
@@ -170,3 +170,26 @@ Otro error en la linea 12
 ValueError: invalid color argument
 ```
 Se arreglo, cambiando el punto por la coma 😝
+
+# Moving block with timer
+
+En este punto se vera como mover el bloque de forma automática al parecer usando un contador de tiempo. El instructor explica que hay juegos donde algunos objetos se mueven solos, y hoy se verá como hacerlo.
+
+En el while loop se insertará el timer. Además se creará un instance method llamado walk, donde se programará el movimiento automático del bloque.
+
+La función walk tendrá la función dibujar_bloque, recordando que esta es la encargada de posicionar el bloque en la pantalla del juego. Y recordemos que el movimiento del bloque se basa en la posicion inicial del mismo (bloque)
+
+La función walk se creará en la clase snake y es necesario crear un nuevo atributo llamado *direction*, porque en base a la direccion, se incrementa las coordenadas (x,y)
+
+La idea es automatizar el movimiento del bloque. El bloque se movera por si mismo cada 0.2 segundos y el jugador podrá cambiar la dirección del bloque usando las teclas de movimiento: up, down, left y right
+
+1. Importar la libreria time : ``import time```. Esta libreria permite crear un contador de tiempo y se programará para que el bloque se mueva cada (0.2) segundos
+2. Crear el atributo *direction* En el método constructor de la clase **Snake**, incluir el *atributo direction*: ```self.direction = 'down'```. Este atributo, indicará a que dirección se deberá mover el bloque. Esta variable tendrá asignada la dirección la cual a su vez estará ligada a la función *walk*
+3. Crear el instance method *walk*. Este método, permitirá tomar el atributo *direction* e iniciará el movimiento del bloque a partir de la dirección elegida por el usuario a través de las teclas de movimiento: up, down, left y right.
+4. Modificar los instance methods: move_left, move_right, move_up y move_right agregando: self.direction = 'left' o según corresponda. Este cambio permitira ejecutar la acción del cambio de dirección en base a la elección del usuario a través de las teclas de movimiento: up, down, left y right
+5. Implementar el contador. En el instance method run(), de la clase **Game**, invocar el método *walk* agregando el contador:
+```
+self.snake.walk()
+time.sleep(0.2)
+```
+
