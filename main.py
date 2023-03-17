@@ -1,5 +1,6 @@
 import pygame
 from pygame.locals import *
+import time
 
 class Snake:
     def __init__(self,window_game) -> None:
@@ -7,6 +8,7 @@ class Snake:
         self.block = pygame.image.load('img/rect815.png')
         self.x = 100
         self.y = 100
+        self.direction = 'down'
 
     def dibujar_bloque(self):
         self.window_game.fill((117,179,64))
@@ -15,19 +17,35 @@ class Snake:
 
     # Instance methods - metodos para mover el bloque
     def move_left(self):
-        self.x -= 10
-        self.dibujar_bloque()
+        self.direction = 'left'
+        # self.x -= 10
+        # self.dibujar_bloque()
 
     def move_right(self):
-        self.x += 10
-        self.dibujar_bloque()
+        self.direction = 'right'
+        # self.x += 10
+        # self.dibujar_bloque()
 
     def move_up(self):
-        self.y -= 10
-        self.dibujar_bloque()
+        self.direction = 'up'
+        # self.y -= 10
+        # self.dibujar_bloque()
     
     def move_down(self):
-        self.y += 10
+        self.direction = 'down'
+        # self.y += 10
+        # self.dibujar_bloque()
+
+    def walk(self):
+        if self.direction == 'up':
+            self.y -= 10
+        if self.direction == 'down':
+            self.y += 10
+        if self.direction == 'left':
+            self.x -= 10
+        if self.direction == 'right':
+            self.x += 10
+
         self.dibujar_bloque()
 
 
@@ -67,6 +85,10 @@ class Game:
                 
                 elif event.type == QUIT:
                     running = False
+            
+            self.snake.walk()
+            time.sleep(0.2)
+
 
 if __name__ == "__main__":
     game = Game()
